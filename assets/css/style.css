@@ -27,7 +27,7 @@ header button {
   padding: .5rem;
   border-radius: .5rem;
 }
-#viewScores span {
+#view-scores span {
   font-size: 2rem;
   padding: 1rem; 
   font-weight: 500; 
@@ -45,7 +45,7 @@ main {
   justify-content: center;
 }
 
-.quizArea {
+.quiz-area {
   display: flex;
   flex-flow: column wrap;
   justify-self: center;
@@ -61,11 +61,11 @@ h1 {
   margin: 1rem 0;
 }
 
-.quizArea p {
+.quiz-area p {
   font-size: 1.5rem;
 }
 
-.quizArea button {
+.quiz-area button {
   font-size: 1.2rem;
   width: 10vw;
   align-self: center;

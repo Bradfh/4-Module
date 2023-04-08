@@ -12,19 +12,32 @@
 
 <body>
   <header>
-    <button id="viewScores"><span>View High Scores</span></button>
+    <button id="view-scores"><span>View High Scores</span></button>
     <p>Timer</p>
   </header>
 
   <main>
-    <section class="quizArea" id="quizStart">
+    <section class="quiz-area" id="quiz-start" style="display:block;">
       <h1>How well do you know ancient history?</h1>
       <p>You have 60 seconds to answer 5 history questions.
         If you answer a question incorrectly you will lose 10 seconds.
       </p>
-      <button id="buttonStart">Begin!</button>
+      <button id="button-start" onclick="startGame()">Begin!</button>
+    </section>
+
+    <section class="quiz-hidden" id="quiz-questions" style="display:none;">
+      <h1 id="inquiry">Question</h1>
+      <ul id="choices">
+        <li  id = "choice-one">One</li>
+        <li  id = "choice-two">Two</li>
+        <li  id = "choice-three">Three</li>
+        <li  id = "choice-four">Four</li>
+      </ul>
+      <img src="" alt="" style="float: right;">
     </section>
   </main>
+
+  <script src="./assets/js/script.js"></script>
 
 </body>
 
