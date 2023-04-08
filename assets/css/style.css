@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  width: 100vw;
+}
+
+body {
+  max-width: 100vw;
+  font-size: 62.5%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;  
+}
+
+header button {
+  background-color: #edbebe;
+  padding: .5rem;
+  border-radius: .5rem;
+}
+#viewScores span {
+  font-size: 2rem;
+  padding: 1rem; 
+  font-weight: 500; 
+}
+
+header p {
+  font-size: 2rem;
+  font-weight: 500;
+  color: red;
+}
+
+main {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.quizArea {
+  display: flex;
+  flex-flow: column wrap;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 5rem;
+  max-width: 80vw;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+.quizArea p {
+  font-size: 1.5rem;
+}
+
+.quizArea button {
+  font-size: 1.2rem;
+  width: 10vw;
+  align-self: center;
+  margin: 2rem;
+  background-color: #edbebe;
+  border-radius: 1rem;
+  padding: .5rem;
+}
+
