@@ -49,9 +49,9 @@ function setTime () {
     showQuestion();
     if (secondsLeft <= 0) {
       alert('Out of Time!');
-      timerElement.textContent = '0';
+      timerElement.textContent === '0';
       clearInterval(timerInterval);
-      showScores()
+      window.location.href = "scores.html";
       
     } 
     
@@ -148,9 +148,4 @@ function showQuestion() {
     }
     )};
     
-}
-
-function showScores() {
-  questionArea.innerHTML = '';
-  questionArea.innerHTML = 'Thanks for playing!  Enter your name for posterity!'
 }

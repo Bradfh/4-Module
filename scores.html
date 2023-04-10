@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +8,25 @@
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Quiz Scores</title>
 </head>
-<body>
-  <div class="score-screen">
+
+<body class = "quiz-hidden">
+  
     <h2>Thanks for playing!</h2>
-      <div class="score-box">
-        <ul id="score-list"></ul>
-        </ul>
-      </div>
-      <!-- !TODO insert submit box -->
-    <button id="button-start" onclick="changePage1()">Start Quiz</button>
-    <button id="clear-scores">Clear Scores</button>
-  </div>
+    <div class="score-box">
+      <ul id="score-list"></ul>
+    </div>
+    <div class="score-submit">
+      <input id="name-input" type="text" placeholder="Enter Name"></input>
+      <button id="submit-button" type="submit">Submit</button>
+    </div>
+    <div class="score-buttons">
+      <button id="button-start" onclick="changePage1()">Start Quiz</button>
+      <button id="clear-scores">Clear Scores</button>
+    </div>
+
+ 
   <script src="./assets/js/script.js"></script>
 
 </body>
+
 </html>
