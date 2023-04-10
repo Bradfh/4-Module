@@ -13,11 +13,20 @@
 //Start Game Function - change the h1 to question? hide p?  create ul and append children as choices?
 
 let startArea = document.querySelector(".quiz-area");
-let quizArea = document.querySelector(".quiz-hidden");
+let quizArea = document.querySelector("#quiz-questions");
 let buttonSelect = document.querySelector("#button-start");
 /* let mode = "noQuiz"; */
 let timerElement = document.getElementById('timer');
-let secondsLeft = 60;
+let secondsLeft = 10;
+let scoreEl = document.getElementById('score');
+// scoreEl.textContent = secondsLeft;
+
+const answerArea = document.getElementById('choices');
+const questionArea = document.getElementById('inquiry');
+let currentQuestion = 0;
+let timerInterval;
+const highScores = [];
+
 
 
 /* function startGame() {
@@ -34,28 +43,29 @@ let secondsLeft = 60;
 
 
 
-function changePage1() {
-  window.location.href = "index.html";
-}
+// function changePage1() {
+//   window.location.href = "index.html";
+// }
 
-function changePage2() {
-  window.location.href = "scores.html";
-}
+// function changePage2() {
+//   window.location.href = "scores.html";
+// }
 
-function setTime () {
-  var timerInterval = setInterval(function() {
+
+
+function setTime() {
+  if (secondsLeft < 0) {
+    quizEnd();
+    alert('Out of Time!');
+  }
+  timerInterval = setInterval(function () {
     secondsLeft--;
     timerElement.textContent = secondsLeft;
-    showQuestion();
-    if (secondsLeft <= 0) {
-      alert('Out of Time!');
-      timerElement.textContent === '0';
-      clearInterval(timerInterval);
-      window.location.href = "scores.html";
-      
-    } 
-    
+
+
   }, 1000);
+
+
 }
 
 // Question object array with embedded answer object arrays:
@@ -105,13 +115,13 @@ const questions = [
     ],
   }
 ]
-
+// Note to self: these 2 const define where I will be making the JS do things.
 // function for populating the HTML.  Using createElement
 // need to queryselect a bunch of things from the HTML.  choice-btn
 
-const answerArea = document.getElementById('choices');
-const questionArea = document.getElementById('inquiry');  // Note to self: these 2 const define where I will be making the JS do things.
-let currentQuestion = 0;
+// const answerArea = document.getElementById('choices');
+// const questionArea = document.getElementById('inquiry');  
+// let currentQuestion = 0;
 
 // This is making the innerHTML >< state the question element based on which question index we are on within the questions array.
 function showQuestion() {
@@ -121,31 +131,76 @@ function showQuestion() {
   questionArea.innerHTML = questions[currentQuestion].question;
 
   answerArea.innerHTML = ''; // Answer area reset
-  for (let i = 0; i < questions[currentQuestion].answers.length; i ++) { //this should make an individual button for each answer
+  for (let i = 0; i < questions[currentQuestion].answers.length; i++) { //this should make an individual button for each answer
     let answer = questions[currentQuestion].answers[i];
     let button = document.createElement('button');
     button.className = 'choice-btn';
     button.innerHTML = answer.choice;
     answerArea.appendChild(button);
-    button.addEventListener('click', function() {  //because the answers were given Boolean elements this works
+    button.addEventListener('click', function () {  //because the answers were given as Boolean elements this works
       if (answer.correct) {
         currentQuestion++;
       } else {
         currentQuestion++;
         secondsLeft -= 10;
-        document.getElementById('timer').innerHtml='00:' + secondsLeft;
+        document.getElementById('timer').innerHtml = '00:' + secondsLeft;
         timerElement.classList.add('wrong-answer');
-          setTimeout(() => {
-            timerElement.classList.remove('wrong-answer');
-      }, 500);
+        setTimeout(() => {
+          timerElement.classList.remove('wrong-answer');
+        }, 500);
       }
 
       if (currentQuestion < questions.length) {
         showQuestion();
       } else {
-        window.location.href = "scores.html";
+        quizEnd();
+
+        
       }
     }
-    )};
+    )
+  };
+
+}
+
+function quizEnd() {
+  clearInterval(timerInterval);
+  scoreEl.textContent = secondsLeft;
+  quizArea.style.display = 'none';
+  document.querySelector('#score-screen').style.display = 'block';
+}
+
+function calculateScore(secondsLeft) {
+  return secondsLeft
+}
+
+
+function submitHighScores() {
+  let user = document.getElementById('name-input').value;
+  let newScore = {
+    user: user,
+    score: secondsLeft,
+  }
+  highScores.push(newScore);
+  console.log(highScores);
+  localStorage.setItem('score', JSON.stringify(highScores));
     
 }
+
+document.getElementById("button-start").addEventListener('click', function () {
+  console.log('start-quiz');
+  setTime();
+  showQuestion();
+});
+
+document.getElementById("start-again").addEventListener('click', function () {
+  currentQuestion = 0;
+  secondsLeft = 10;
+  document.querySelector('#score-screen').style.display = 'none';
+  document.querySelector('.quiz-area').style.display = 'block';
+});
+
+document.getElementById("submit-button").addEventListener('click', function() {
+  submitHighScores();
+});
+
