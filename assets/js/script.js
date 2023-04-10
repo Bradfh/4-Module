@@ -16,18 +16,36 @@ let startArea = document.querySelector(".quiz-area");
 let quizArea = document.querySelector(".quiz-hidden");
 let buttonSelect = document.querySelector("#button-start");
 let mode = "noQuiz";
+let timerElement = document.getElementById('timer');
+let secondsLeft = 5;
 
 function startGame() {
   if (mode === "noQuiz") {
     mode === "yesQuiz";
     startArea.setAttribute("style", "display:none");
     quizArea.setAttribute("style", "display:block");
-    showQuestion();
+    setTime();
   } else {
     mode === "noQuiz";
     quizArea.setAttribute("style", "display:none");
     startArea.setAttribute("style", "display:block");
   }
+}
+
+function setTime () {
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timerElement.textContent = secondsLeft;
+    showQuestion();
+    if (secondsLeft <= 0) {
+      alert('Out of Time!');
+      timerElement.textContent = '0';
+      clearInterval(timerInterval);
+      showScores()
+      
+    } 
+    
+  }, 1000);
 }
 
 // Question object array with embedded answer object arrays:
@@ -85,8 +103,9 @@ const answerArea = document.getElementById('choices');
 const questionArea = document.getElementById('inquiry');  // Note to self: these 2 const define where I will be making the JS do things.
 let currentQuestion = 0;
 
-// This is making the innerHTML >< state the question element based on which question object we are on within the questions array.
+// This is making the innerHTML >< state the question element based on which question index we are on within the questions array.
 function showQuestion() {
+  questionArea.innerHTML = '';
   questionArea.innerHTML = questions[currentQuestion].question;
 
   answerArea.innerHTML = ''; // Answer area reset
@@ -101,6 +120,12 @@ function showQuestion() {
         currentQuestion++;
       } else {
         currentQuestion++;
+        secondsLeft -= 10;
+        document.getElementById('timer').innerHtml='00:' + secondsLeft;
+        timerElement.classList.add('wrong-answer');
+          setTimeout(() => {
+            timerElement.classList.remove('wrong-answer');
+      }, 500);
       }
 
       if (currentQuestion < questions.length) {
@@ -111,4 +136,9 @@ function showQuestion() {
     }
     )};
     
+}
+
+function showScores() {
+  questionArea.innerHTML = '';
+  questionArea.innerHTML = 'Thanks for playing!  Enter your name for posterity!'
 }
