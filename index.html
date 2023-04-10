@@ -12,7 +12,7 @@
 
 <body>
   <header>
-    <button id="view-scores"><span>View High Scores</span></button>
+    <button id="view-scores" onclick="changePage2()"><span>View High Scores</span></button>
     <p id = "timer">Timer</p>
   </header>
 
@@ -22,7 +22,7 @@
       <p>You have 60 seconds to answer 5 history questions.
         If you answer a question incorrectly you will lose 10 seconds.
       </p>
-      <button id="button-start" onclick="startGame()">Begin!</button>
+      <button id="button-start" onclick="setTime()">Begin!</button>
     </section>
 
     <section class="quiz-hidden" id="quiz-questions" style="display:none;">

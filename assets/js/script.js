@@ -15,11 +15,12 @@
 let startArea = document.querySelector(".quiz-area");
 let quizArea = document.querySelector(".quiz-hidden");
 let buttonSelect = document.querySelector("#button-start");
-let mode = "noQuiz";
+/* let mode = "noQuiz"; */
 let timerElement = document.getElementById('timer');
-let secondsLeft = 5;
+let secondsLeft = 60;
 
-function startGame() {
+
+/* function startGame() {
   if (mode === "noQuiz") {
     mode === "yesQuiz";
     startArea.setAttribute("style", "display:none");
@@ -29,7 +30,16 @@ function startGame() {
     mode === "noQuiz";
     quizArea.setAttribute("style", "display:none");
     startArea.setAttribute("style", "display:block");
-  }
+  } */
+
+
+
+function changePage1() {
+  window.location.href = "index.html";
+}
+
+function changePage2() {
+  window.location.href = "scores.html";
 }
 
 function setTime () {
@@ -105,6 +115,8 @@ let currentQuestion = 0;
 
 // This is making the innerHTML >< state the question element based on which question index we are on within the questions array.
 function showQuestion() {
+  startArea.setAttribute("style", "display:none");
+  quizArea.setAttribute("style", "display:block");
   questionArea.innerHTML = '';
   questionArea.innerHTML = questions[currentQuestion].question;
 
@@ -131,7 +143,7 @@ function showQuestion() {
       if (currentQuestion < questions.length) {
         showQuestion();
       } else {
-        showScores();
+        window.location.href = "scores.html";
       }
     }
     )};
