@@ -191,5 +191,13 @@ document.getElementById("clear-scores").addEventListener('click', function() {
   clearHighScores();
 });
 
+document.getElementById("view-scores").addEventListener('click', function () {
+  currentQuestion = 0;
+  secondsLeft = 10;
+  document.querySelector('#score-screen').style.display = 'block';
+  document.querySelector('.quiz-area').style.display = 'none';
+  document.querySelector('.quiz-hidden').style.display = 'none';
+});
+
 
 
