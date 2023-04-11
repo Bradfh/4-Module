@@ -12,19 +12,48 @@
 
 <body>
   <header>
-    <button id="viewScores"><span>View High Scores</span></button>
-    <p>Timer</p>
+    <button id="view-scores"><span>View High Scores</span></button>
+    <p id="timer">Timer</p>
   </header>
 
   <main>
-    <section class="quizArea" id="quizStart">
+    <section class="quiz-area" id="quiz-start" style="display:block;">
       <h1>How well do you know ancient history?</h1>
       <p>You have 60 seconds to answer 5 history questions.
         If you answer a question incorrectly you will lose 10 seconds.
       </p>
-      <button id="buttonStart">Begin!</button>
+      <button id="button-start">Begin!</button>
+    </section>
+
+    <section class="quiz-hidden" id="quiz-questions" style="display:none;">
+      <h2 id="inquiry"></h2>
+      <div id="choices"></div>
+      <!-- where buttons go -->
+      <div class="wrong-right">
+        <!--Want it to flash wrong or right-->
+      </div>
+    </section>
+
+    <section class="score-section" id="score-screen" style="display:none">
+      <h2>Thanks for playing!</h2>
+
+      <p id="score"></p>
+
+      <div class="score-box">
+        <ol type="1" class="score-list" id="score-list"></ol type="1">
+      </div>
+      <div class="score-submit">
+        <input id="name-input" type="text" placeholder="Enter Initials"></input>
+        <button id="submit-button" type="submit">Submit</button>
+      </div>
+      <div class="score-buttons">
+        <button id="start-again">Start Quiz</button>
+        <button id="clear-scores">Clear Scores</button>
+      </div>
     </section>
   </main>
+
+  <script src="./assets/js/script.js"></script>
 
 </body>
 
