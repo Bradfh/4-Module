@@ -29,20 +29,18 @@ const highScores = [];
 
 // function to start timer
 function setTime() {
-  if (secondsLeft < 0) {
-    clearInterval(); //!
-    quizEnd();
-    alert('Out of Time!');
-  }
   timerInterval = setInterval(function () {
     secondsLeft--;
     timerElement.textContent = secondsLeft;
-
-
+  if (secondsLeft <= 0) {
+    secondsLeft = 0
+    clearInterval(timerInterval);
+    quizEnd();
+    alert('Out of Time!');
+  }
   }, 1000);
-
-
 }
+
 
 // Question object array with embedded answer object arrays:
 
@@ -131,7 +129,7 @@ function showQuestion() {
 
 function quizEnd() {
   clearInterval(timerInterval);
-  scoreEl.textContent = secondsLeft;
+  scoreEl.textContent = 'You got a score of ' + secondsLeft + '!';
   quizArea.style.display = 'none';
   document.querySelector('#score-screen').style.display = 'block';
 }
@@ -140,7 +138,7 @@ function calculateScore(secondsLeft) {
   return secondsLeft
 }
 
-
+// tutor scott helped me with the JSON sections.
 function submitHighScores() {
   let user = document.getElementById('name-input').value;
   let newScore = {
@@ -151,12 +149,12 @@ function submitHighScores() {
   console.log(highScores);
   localStorage.setItem('score', JSON.stringify(highScores));
 
-  // sorting sorts in alphabetical or ascending order by default.  
+  // using function (a,b) and returning (b-a) makes the scores display in descending order. 
   var highestScores = JSON.parse(localStorage.getItem('score')) || [];
   highestScores.sort(function (a, b) {
     return b.score - a.score;
   });
-  var highScoreListItems = highestScores.map(function (score) {
+  var highScoreListItems = highestScores.map(function(score) {
     return '<li>' + score.user + ' - ' + score.score + '</li>';
   });
   var highScoresList = document.getElementById('score-list');

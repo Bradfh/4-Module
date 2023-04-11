@@ -183,4 +183,43 @@ h2 {
   justify-content: space-around;
   align-items: center;
   padding: 0 5rem;
+  margin-top: 2rem;
+}
+
+.score-section h2 {
+  text-align: center;
+}
+
+.score-section #score{
+  justify-content: center;
+  font-size: 2rem;
+  text-align: center;
+  padding: 1rem;
+  }
+
+.score-list {
+  list-style: none;
+  counter-reset: my-counter;
+  padding: 0 0 1rem 0;
+  
+}
+
+.score-list li {
+  counter-increment: my-counter;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.score-list li::marker {
+  content: counter(my-counter) ". ";
+  color: #edbebe;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.score-submit #submit-button {
+  font-size: 1.2rem;
+  border-radius: 5px;
+  background-color: #c8e3fa;
+  padding: .5rem;
 }
