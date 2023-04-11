@@ -1,23 +1,9 @@
-// Clicking the button will start the game
-// A new question and list of choices will replace the welcome screen and instruction.  is it hidden?
-// When a question is answered the correct answer will display a check mark and an incorrect answer will display an X.
-// When a question is answered the next question and answers will appear
-// When a question is answered incorrectly 10 seconds will be removed from the clock
-//When the quiz is over your score will be displayed.  The score will simply be a value equal to the remaining time
-// Along with the score a submit box will appear to enter your name or initials.  This will be stored in local data
-// A button to try again will be displayed beneath the score screen
-// A button to view high scores will be displayed on the top of the screen
-// Clicking this button will display a list of high scores, taken from local storage, with an option beneath to clear scores (storage).
-
-
-//Start Game Function - change the h1 to question? hide p?  create ul and append children as choices?
-
 let startArea = document.querySelector(".quiz-area");
 let quizArea = document.querySelector("#quiz-questions");
 let buttonSelect = document.querySelector("#button-start");
 /* let mode = "noQuiz"; */
 let timerElement = document.getElementById('timer');
-let secondsLeft = 10;
+let secondsLeft = 60;
 let scoreEl = document.getElementById('score');
 // scoreEl.textContent = secondsLeft;
 
@@ -63,7 +49,7 @@ const questions = [
       { choice: "Eastern Empire", correct: false },
     ],
   }, {
-    question: 'Where is Hadrian"s Wall located?',
+    question: "Where is Hadrian's Wall located?",
     answers: [
       { choice: "Turkey", correct: false },
       { choice: "Armenia", correct: false },
@@ -71,7 +57,7 @@ const questions = [
       { choice: "England", correct: true },
     ],
   }, {
-    question: 'What was the name of Alexander the Great"s famous horse?',
+    question: "What was the name of Alexander the Great's famous horse?",
     answers: [
       { choice: "Hermes", correct: false },
       { choice: "Bucephalaus", correct: true },
@@ -127,6 +113,7 @@ function showQuestion() {
 
 }
 
+
 function quizEnd() {
   clearInterval(timerInterval);
   scoreEl.textContent = 'You got a score of ' + secondsLeft + '!';
@@ -176,7 +163,7 @@ document.getElementById("button-start").addEventListener('click', function () {
 
 document.getElementById("start-again").addEventListener('click', function () {
   currentQuestion = 0;
-  secondsLeft = 10;
+  secondsLeft = 60;
   document.querySelector('#score-screen').style.display = 'none';
   document.querySelector('.quiz-area').style.display = 'block';
 });
@@ -199,3 +186,19 @@ document.getElementById("view-scores").addEventListener('click', function () {
 
 
 
+
+
+
+// Clicking the button will start the game
+// A new question and list of choices will replace the welcome screen and instruction.  is it hidden?
+// When a question is answered the correct answer will display a check mark and an incorrect answer will display an X.
+// When a question is answered the next question and answers will appear
+// When a question is answered incorrectly 10 seconds will be removed from the clock
+//When the quiz is over your score will be displayed.  The score will simply be a value equal to the remaining time
+// Along with the score a submit box will appear to enter your name or initials.  This will be stored in local data
+// A button to try again will be displayed beneath the score screen
+// A button to view high scores will be displayed on the top of the screen
+// Clicking this button will display a list of high scores, taken from local storage, with an option beneath to clear scores (storage).
+
+
+//Start Game Function - change the h1 to question? hide p?  create ul and append children as choices?
