@@ -27,34 +27,10 @@ let currentQuestion = 0;
 let timerInterval;
 const highScores = [];
 
-
-
-/* function startGame() {
-  if (mode === "noQuiz") {
-    mode === "yesQuiz";
-    startArea.setAttribute("style", "display:none");
-    quizArea.setAttribute("style", "display:block");
-    setTime();
-  } else {
-    mode === "noQuiz";
-    quizArea.setAttribute("style", "display:none");
-    startArea.setAttribute("style", "display:block");
-  } */
-
-
-
-// function changePage1() {
-//   window.location.href = "index.html";
-// }
-
-// function changePage2() {
-//   window.location.href = "scores.html";
-// }
-
-
-
+// function to start timer
 function setTime() {
   if (secondsLeft < 0) {
+    clearInterval(); //!
     quizEnd();
     alert('Out of Time!');
   }
@@ -115,13 +91,6 @@ const questions = [
     ],
   }
 ]
-// Note to self: these 2 const define where I will be making the JS do things.
-// function for populating the HTML.  Using createElement
-// need to queryselect a bunch of things from the HTML.  choice-btn
-
-// const answerArea = document.getElementById('choices');
-// const questionArea = document.getElementById('inquiry');  
-// let currentQuestion = 0;
 
 // This is making the innerHTML >< state the question element based on which question index we are on within the questions array.
 function showQuestion() {
@@ -154,11 +123,8 @@ function showQuestion() {
         showQuestion();
       } else {
         quizEnd();
-
-        
       }
-    }
-    )
+    });
   };
 
 }
@@ -184,8 +150,25 @@ function submitHighScores() {
   highScores.push(newScore);
   console.log(highScores);
   localStorage.setItem('score', JSON.stringify(highScores));
-    
+
+  // sorting sorts in alphabetical or ascending order by default.  
+  var highestScores = JSON.parse(localStorage.getItem('score')) || [];
+  highestScores.sort(function (a, b) {
+    return b.score - a.score;
+  });
+  var highScoreListItems = highestScores.map(function (score) {
+    return '<li>' + score.user + ' - ' + score.score + '</li>';
+  });
+  var highScoresList = document.getElementById('score-list');
+  highScoresList.innerHTML = highScoreListItems.join('');
 }
+
+function clearHighScores() {
+  localStorage.removeItem('scores');
+  var highScoresList = document.getElementById('score-list');
+  highScoresList.innerHTML = '';
+}
+
 
 document.getElementById("button-start").addEventListener('click', function () {
   console.log('start-quiz');
@@ -200,7 +183,13 @@ document.getElementById("start-again").addEventListener('click', function () {
   document.querySelector('.quiz-area').style.display = 'block';
 });
 
-document.getElementById("submit-button").addEventListener('click', function() {
+document.getElementById("submit-button").addEventListener('click', function () {
   submitHighScores();
 });
+
+document.getElementById("clear-scores").addEventListener('click', function() {
+  clearHighScores();
+});
+
+
 
